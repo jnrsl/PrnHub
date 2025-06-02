@@ -1,33 +1,37 @@
-/* Basic reset */
+/* Reset */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
+html, body {
+  height: 100%;
   background: #fff0f6;
-  height: 100vh;
   overflow: hidden;
+}
+
+body {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
   padding: 20px;
   position: relative;
 }
 
+/* Hearts container covers full screen, no pointer events */
 .hearts-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* So clicks pass through */
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
   overflow: hidden;
   z-index: 1;
 }
 
+/* Heart style */
 .heart {
   position: absolute;
   width: 30px;
@@ -69,6 +73,7 @@ body {
   }
 }
 
+/* Letter box style centered in the viewport */
 .letter-box {
   background: white;
   max-width: 480px;
@@ -79,6 +84,7 @@ body {
   position: relative;
 }
 
+/* Letter text styling */
 .letter p {
   font-size: 1.1rem;
   line-height: 1.6;
