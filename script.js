@@ -1,19 +1,25 @@
 const heartsContainer = document.getElementById('hearts-container');
 
-function launchHearts() {
-  setInterval(() => {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = 3 + Math.random() * 3 + 's';
-    heart.style.opacity = Math.random();
-    heart.style.transform = `scale(${Math.random() * 1.5 + 0.5}) rotate(45deg)`;
-    heartsContainer.appendChild(heart);
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
 
-    setTimeout(() => {
-      heart.remove();
-    }, 6000);
-  }, 300);
+  // Random horizontal position within viewport width
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+
+  // Start near bottom (just out of view)
+  heart.style.top = window.innerHeight + 30 + 'px';
+
+  // Random animation duration between 4-8 seconds
+  heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+
+  heartsContainer.appendChild(heart);
+
+  // Remove the heart element after animation ends to keep DOM clean
+  heart.addEventListener('animationend', () => {
+    heart.remove();
+  });
 }
 
-launchHearts();
+// Create hearts every 300ms
+setInterval(createHeart, 300);
